@@ -3,7 +3,7 @@ description: A simple Python bot sample for Beep Boop
 avatar: resources/avatar.png
 background: resources/background.png
 config:
-  - name: LOG_LEVEL
+  - name: MeIRL
     friendly_name: Severity level to show for logging.
     info: See https://docs.python.org/2/library/logging.html#levels
     default: DEBUG
