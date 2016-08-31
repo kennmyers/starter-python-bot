@@ -6,6 +6,8 @@ from slack_clients import SlackClients
 from messenger import Messenger
 from event_handler import RtmEventHandler
 
+import urllib, json
+
 logger = logging.getLogger(__name__)
 
 
@@ -24,6 +26,8 @@ class SlackBot(object):
         self.keep_running = True
         if token is not None:
             self.clients = SlackClients(token)
+            
+        self.urls = ["https://reddit.com/r/me_irl.api", "https://reddit.com/r/me_irl.api"]
 
     def start(self, resource):
         """Creates Slack Web and RTM clients for the given Resource
@@ -58,18 +62,28 @@ class SlackBot(object):
                         continue
 
                 self._auto_ping()
+                
+                self.post_pictures()
+                
                 time.sleep(.1)
 
         else:
             logger.error('Failed to connect to RTM client with token: {}'.format(self.clients.token))
-
+    
+    def post_pictures(self):
+        for url in self.urls:
+            response = urllib.urlopen(url)
+            data = json.loads(response.read())
+            link = data["data"]["children"][0]["data"]["url"]
+            self.clients.web.chat.post_message('#bot_test', link)
+    
     def _auto_ping(self):
         # hard code the interval to 3 seconds
         now = int(time.time())
         if now > self.last_ping + 3:
             self.clients.rtm.server.ping()
             self.last_ping = now
-
+    
     def stop(self, resource):
         """Stop any polling loops on clients, clean up any resources,
         close connections if possible.
