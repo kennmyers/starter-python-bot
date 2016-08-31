@@ -64,7 +64,7 @@ class SlackBot(object):
 
                 self._auto_ping()
                 
-                #post pictures
+                '''#post pictures
                 for i,url in enumerate(self.urls):
                     response = urllib.urlopen(url)
                     data = json.loads(response.read())
@@ -73,7 +73,7 @@ class SlackBot(object):
                     if self.prev_urls[i] != link:
                         msg_writer.send_message('#meme_central', link)
                         self.prev_urls[i] = link
-                    time.sleep(2)
+                    time.sleep(2)'''
                 
                 time.sleep(.1)
 
