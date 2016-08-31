@@ -75,7 +75,7 @@ class SlackBot(object):
         for i,url in enumerate(self.urls):
             response = urllib.urlopen(url)
             data = json.loads(response.read())
-            link = data["data"]["children"][0]["data"]["url"]
+            link = data["data"]["children"][1]["data"]["url"]
             
             if self.prev_urls[i] != link:
                 self.clients.web.chat.post_message('#meme_central', link)
