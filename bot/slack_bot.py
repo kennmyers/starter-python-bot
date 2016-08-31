@@ -72,13 +72,13 @@ class SlackBot(object):
             logger.error('Failed to connect to RTM client with token: {}'.format(self.clients.token))
     
     def post_pictures(self):
-        for i,url in enumerate[self.urls]:
+        for i,url in enumerate(self.urls):
             response = urllib.urlopen(url)
             data = json.loads(response.read())
             link = data["data"]["children"][0]["data"]["url"]
             
             if self.prev_urls[i] != link:
-                self.clients.web.chat.post_message('#meme_central', link)
+                self.clients.web.chat.post_message('meme_central', link)
                 self.prev_urls[i] = link
     
     def _auto_ping(self):
