@@ -28,7 +28,7 @@ class SlackBot(object):
             self.clients = SlackClients(token)
             
         self.urls = ["https://reddit.com/r/me_irl.api", "https://reddit.com/r/meirl.api", "https://reddit.com/r/toomeirlformeirl.api"]
-        self.prev_urls = ["",""]
+        self.prev_urls = ["","",""]
 
     def start(self, resource):
         """Creates Slack Web and RTM clients for the given Resource
