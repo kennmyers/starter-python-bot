@@ -75,7 +75,7 @@ class SlackBot(object):
             response = urllib.urlopen(url)
             data = json.loads(response.read())
             link = data["data"]["children"][0]["data"]["url"]
-            self.clients.web.chat.post_message('#bot_test', link)
+            self.clients.web.chat.post_message('bot_test', link)
     
     def _auto_ping(self):
         # hard code the interval to 3 seconds
