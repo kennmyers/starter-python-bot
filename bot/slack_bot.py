@@ -78,7 +78,7 @@ class SlackBot(object):
             link = data["data"]["children"][0]["data"]["url"]
             
             if self.prev_urls[i] != link:
-                self.clients.web.chat.post_message('meme_central', link)
+                self.clients.web.chat.post_message('#meme_central', link)
                 self.prev_urls[i] = link
     
     def _auto_ping(self):
