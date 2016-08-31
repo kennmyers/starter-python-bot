@@ -28,6 +28,7 @@ class SlackBot(object):
             self.clients = SlackClients(token)
             
         self.urls = ["https://reddit.com/r/me_irl.api", "https://reddit.com/r/me_irl.api"]
+        self.prev_urls = ["",""]
 
     def start(self, resource):
         """Creates Slack Web and RTM clients for the given Resource
@@ -71,11 +72,14 @@ class SlackBot(object):
             logger.error('Failed to connect to RTM client with token: {}'.format(self.clients.token))
     
     def post_pictures(self):
-        for url in self.urls:
+        for i,url in enumerate[self.urls]:
             response = urllib.urlopen(url)
             data = json.loads(response.read())
             link = data["data"]["children"][0]["data"]["url"]
-            self.clients.web.chat.post_message('bot_test', link)
+            
+            if self.prev_urls[i] != link:
+                self.clients.web.chat.post_message('bot_test', link)
+                self.prev_urls[i] = link
     
     def _auto_ping(self):
         # hard code the interval to 3 seconds
