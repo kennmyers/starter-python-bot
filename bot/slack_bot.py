@@ -72,14 +72,17 @@ class SlackBot(object):
             logger.error('Failed to connect to RTM client with token: {}'.format(self.clients.token))
     
     def post_pictures(self):
+        msg_writer = Messenger(self.clients)
+        
         for i,url in enumerate(self.urls):
             response = urllib.urlopen(url)
             data = json.loads(response.read())
-            link = data["data"]["children"][2]["data"]["url"]
+            link = data["data"]["children"][1]["data"]["url"]
             
             if self.prev_urls[i] != link:
-                self.msg_writer.send_message('#meme_central', link)
+                msg_writer.send_message('#meme_central', link)
                 self.prev_urls[i] = link
+            time.sleep(2)
     
     def _auto_ping(self):
         # hard code the interval to 3 seconds
