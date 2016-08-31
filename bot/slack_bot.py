@@ -27,7 +27,7 @@ class SlackBot(object):
         if token is not None:
             self.clients = SlackClients(token)
             
-        self.urls = ["https://reddit.com/r/me_irl.api", "https://reddit.com/r/me_irl.api"]
+        self.urls = ["https://reddit.com/r/me_irl.api", "https://reddit.com/r/meirl.api", "https://reddit.com/r/toomeirlformeirl.api"]
         self.prev_urls = ["",""]
 
     def start(self, resource):
