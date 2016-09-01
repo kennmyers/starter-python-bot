@@ -71,7 +71,7 @@ class SlackBot(object):
                     link = data["data"]["children"][1]["data"]["url"]
                     
                     if self.prev_urls[i] != link:
-                        msg_writer.send_message('#bot_test', link)
+                        msg_writer.send_message('#bot_test', link[-5:])
                         self.prev_urls[i] = link
                     time.sleep(2)
                 
