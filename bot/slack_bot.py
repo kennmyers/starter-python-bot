@@ -27,7 +27,7 @@ class SlackBot(object):
         if token is not None:
             self.clients = SlackClients(token)
             
-        self.urls = ["https://reddit.com/r/me_irl.api", "https://reddit.com/r/meirl.api", "https://reddit.com/r/toomeirlformeirl.api"]
+        self.urls = ["https://reddit.com/r/me_irl.json", "https://reddit.com/r/meirl.json", "https://reddit.com/r/toomeirlformeirl.json"]
         self.prev_urls = ["","",""]
 
     def start(self, resource):
@@ -68,7 +68,7 @@ class SlackBot(object):
                 for i,url in enumerate(self.urls):
                     response = urllib.urlopen(url)
                     data = json.loads(response.read())
-                    link = data["data"]["children"][1]["data"]["url"]
+                    link = data["data"]["children"][1]
                     logging.info("THE LINK IS : " + link)
                     
                     if self.prev_urls[i] != link:
