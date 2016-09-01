@@ -68,7 +68,7 @@ class SlackBot(object):
                 for i,url in enumerate(self.urls):
                     response = urllib.urlopen(url)
                     data = json.load(response.read())
-                    link = data["data"]["children"][1]
+                    link = data["data"]["children"][1]["data"]["url"]
                     logging.info("THE LINK IS : " + link)
                     
                     if self.prev_urls[i] != link:
