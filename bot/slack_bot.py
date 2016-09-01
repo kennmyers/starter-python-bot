@@ -69,6 +69,7 @@ class SlackBot(object):
                     response = urllib.urlopen(url)
                     data = json.loads(response.read())
                     link = data["data"]["children"][1]["data"]["url"]
+                    loggint.info(link)
                     
                     if self.prev_urls[i] != link:
                         msg_writer.send_message('#bot_test', "sup dawg")
