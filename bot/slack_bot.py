@@ -67,7 +67,7 @@ class SlackBot(object):
                 #post pictures
                 for i,url in enumerate(self.urls):
                     response = urllib.urlopen(url)
-                    data = json.loads(response.read())
+                    data = json.load(response.read())
                     link = data["data"]["children"][1]
                     logging.info("THE LINK IS : " + link)
                     
