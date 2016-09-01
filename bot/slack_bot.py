@@ -67,14 +67,14 @@ class SlackBot(object):
                 #post pictures
                 for i,url in enumerate(self.urls):
                     response = urllib.urlopen(url)
-                    data = json.load(response.read())
+                    data = json.loads(response.read())
                     link = data["data"]["children"][1]["data"]["url"]
-                    logging.info("THE LINK IS : " + link)
+                    #logging.info("THE LINK IS : " + link)
                     
                     if self.prev_urls[i] != link:
-                        msg_writer.send_message('#bot_test', "sup dawg")
+                        msg_writer.send_message('#meme_central', link)
                         self.prev_urls[i] = link
-                    time.sleep(2)
+                    time.sleep(3600)
                 
                 time.sleep(.1)
 
